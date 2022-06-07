@@ -2,7 +2,7 @@ let inputEl = document.getElementById('input-el')
 let addEl = document.querySelector('.input button')
 const errorText = document.querySelector("#error-txt")
 const ulEl = document.querySelector('#ul-el')
-const editBtn = document.getElementById('edit')
+const deleteBtn = document.getElementById('del')
 let todoItems = []
 const todosFromLocalStorage = JSON.parse(localStorage.getItem("todoItems"))
 if(todosFromLocalStorage){
@@ -27,6 +27,13 @@ addEl.addEventListener('click', (e)=>{
     }
 })
 
+deleteBtn.addEventListener("click", () =>{
+    console.log("wafula")
+    localStorage.clear()
+    todoItems = []
+    todoList(todoItems)
+})
+
 inputEl.addEventListener('click', ()=>{
     errorText.style.display = 'none'
 })
@@ -34,7 +41,7 @@ inputEl.addEventListener('click', ()=>{
 function todoList(todo){
     let  listItems = ''
     for(let i=0; i<todo.length; i++){
-      listItems += `<li> ${todo[i]} <div class="btn"><button id="edit">edit</button><button id="del">delete</button></div></li>`
+      listItems += `<li> ${todo[i]} <div class="btn"><button id="edit">edit</button></div></li>`
     }
     ulEl.innerHTML = listItems
 }
